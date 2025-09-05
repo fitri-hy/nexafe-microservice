@@ -49,11 +49,15 @@ nexa-fe/
 │   │   └── providers.tsx
 │   │
 │   ├── data/
-│   │   ├── client.ts
-│   │   ├── services/
-│   │   │   └── userService.ts
-│   │   └── queries/
-│   │       └── useUsers.ts
+│   │   ├── Api.ts
+│   │   ├── product/
+│   │   │   ├── productService.ts
+│   │   │   ├── productTypes.ts
+│   │   │   └── productUse.ts
+│   │   └── user/
+│   │       ├── userService.ts
+│   │       ├── userTypes.ts
+│   │       └── userUse.ts
 │   │
 │   ├── infra/
 │   │   ├── app1
