@@ -1,6 +1,7 @@
 ﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Page from "../../ui/components/Page";
 import Card from "../../ui/components/Card";
 import Button from "../../ui/components/Button";
 import Input from "../../ui/components/Input";
@@ -12,6 +13,7 @@ export default function App() {
   const [newTodo, setNewTodo] = useState("");
 
   return (
+  <Page title="TodoList | Nexa FE">
     <div className="px-4 md:p-9">
       <h1 className="text-center text-3xl md:text-4xl font-bold text-black dark:text-white">
         TodoList
@@ -75,5 +77,6 @@ export default function App() {
         ))}
       </div>
     </div>
+  </Page>
   );
 }

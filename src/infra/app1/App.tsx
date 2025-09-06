@@ -1,6 +1,7 @@
 ﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Page from "../../ui/components/Page";
 import { useUsers } from "../../data/users/userUse";
 import { useProducts } from "../../data/products/productUse";
 import Card from "../../ui/components/Card";
@@ -14,6 +15,7 @@ export default function App1() {
   const { data: products, isLoading: loadingProducts, isError: errorProducts } = useProducts();
 
   return (
+  <Page title="Sample Data List | Nexa FE">
     <div className="px-4 md:p-9">
       <h1 className="text-center text-3xl md:text-4xl font-bold text-black dark:text-white">
         Sample Data List
@@ -83,5 +85,6 @@ export default function App1() {
         </>
       )}
     </div>
+  </Page>
   );
 }
