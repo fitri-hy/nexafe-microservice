@@ -6,6 +6,13 @@ type ThemeState = {
 };
 
 export const useTheme = create<ThemeState>((set) => ({
-  darkMode: false,
-  toggle: () => set((state) => ({ darkMode: !state.darkMode })),
+  darkMode: typeof window !== "undefined"
+    ? localStorage.getItem("darkMode") === "true"
+    : false,
+  toggle: () =>
+    set((state) => {
+      const newMode = !state.darkMode;
+      localStorage.setItem("darkMode", String(newMode));
+      return { darkMode: newMode };
+    }),
 }));

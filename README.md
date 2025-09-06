@@ -38,8 +38,8 @@ pnpm dev
 ```
 nexa-fe/
 │
-├── public/
-│   └── favicon.ico
+├── public/assets/images/
+│   └── logo.png
 │
 ├── src/
 │   ├── app/
@@ -77,15 +77,21 @@ nexa-fe/
 │   │   ├── components/
 │   │   │   ├── Page.tsx
 │   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
 │   │   │   ├── Card.tsx
 │   │   │   ├── Button.tsx
-│   │   │   └── Card.tsx
+│   │   │   ├── Input.tsx
+│   │   │   └── Modal.tsx
 │   │   ├── layouts/
 │   │   │   └── MainLayout.tsx
 │   │   ├── pages/ 
 │   │   │   └── Host.tsx
-│   │   └── styles/
-│   │       └── tailwind.css
+│   │   ├── styles/ 
+│   │   │   └── tailwind.css
+│   │   └── tokens/
+│   │       ├── colors.ts
+│   │       ├── spacing.ts
+│   │       └── typography.ts
 │   │
 │   └── utils/
 │       └── formatDate.ts

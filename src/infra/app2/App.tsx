@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 
 import Card from "../../ui/components/Card";
+import Button from "../../ui/components/Button";
+import Input from "../../ui/components/Input";
 import { formatDate } from "../../utils/formatDate";
 import { useTodos } from "./useTodos";
 
@@ -20,51 +22,54 @@ export default function App() {
       <code className="block text-xs font-mono text-center mb-2 text-indigo-500">
         /src/infra/app2/App.tsx
       </code>
-      <Link to="/" className="block text-center text-blue-500 mx-auto font-semibold hover:underline mt-2" >
+      <Link
+        to="/"
+        className="block text-center text-blue-500 mx-auto font-semibold hover:underline mt-2"
+      >
         Back Home
       </Link>
 
-      <div className="flex gap-2 max-w-lg justify-center items-center mx-auto mt-6">
-        <input
-          type="text"
+      <div className="flex gap-2 w-full max-w-lg justify-center items-center mx-auto mt-6">
+        <Input
+          placeholder="Add new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add new todo"
-          className="bg-white dark:bg-slate-800 w-full rounded border border-neutral-200/60 dark:border-slate-700/50 px-4 py-2 focus:outline-none"
+          className="w-full"
         />
-        <button
-          className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded hover:bg-blue-600 dark:hover:bg-blue-500 hover:duration-300"
+        <Button
+          label="Add"
+          variant="primary"
           onClick={() => {
-            addTodo(newTodo);
+            if (newTodo.trim() === "") return;
+            addTodo(newTodo.trim());
             setNewTodo("");
           }}
-        >
-          Add
-        </button>
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
         {todos.map((todo) => (
-          <Card key={todo.id} title={todo.text}>
+          <Card key={todo.id} title={todo.text} className="flex flex-col justify-between">
             <p>
-			  Status: <span className="font-semibold">{todo.completed ? "✅ Completed" : "❌ Pending"}</span>
-			</p>
+              Status:{" "}
+              <span className="font-semibold">
+                {todo.completed ? "✅ Completed" : "❌ Pending"}
+              </span>
+            </p>
             <p>
               Created: <span className="font-semibold">{formatDate(todo.createdAt)}</span>
             </p>
-            <div className="flex gap-4 mt-4 items-center justify-center">
-              <button
-                className="flex items-center gap-1 hover:underline text-emerald-500 font-semibold"
+            <div className="flex gap-2 mt-4 items-center justify-center">
+              <Button
+                label={todo.completed ? "Undo" : "Complete"}
+                variant="success"
                 onClick={() => toggleComplete(todo.id)}
-              >
-                {todo.completed ? "Undo" : "Complete"}
-              </button>
-              <button
-                className="flex items-center gap-1 hover:underline text-rose-500 font-semibold"
+              />
+              <Button
+                label="Delete"
+                variant="danger"
                 onClick={() => deleteTodo(todo.id)}
-              >
-                Delete
-              </button>
+              />
             </div>
           </Card>
         ))}
