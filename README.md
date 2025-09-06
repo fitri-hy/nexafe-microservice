@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/assets/images/logo.png" alt="Nexa" width="150"/>
+  <img src="./public/assets/images/ss.png" alt="Nexa" />
 </p>
 
 # NexaFE - Starter Kit

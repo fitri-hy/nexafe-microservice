@@ -1,11 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useThemeContext } from "../../ix/stores/ThemeProvider";
+import { useState, useEffect } from "react";
 
+export const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `flex items-center gap-1 hover:text-blue-500 text-lg ${
+    isActive ? "text-blue-500 font-semibold" : ""
+  }`;
+  
 export default function Navbar() {
   const { toggle, darkMode } = useThemeContext();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="p-4 bg-white dark:bg-slate-800 flex items-center justify-between gap-4 shadow">
+    <nav className={`fixed w-full top-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? "bg-white dark:bg-slate-800 shadow"
+          : "bg-transparent dark:bg-transparent"
+      } p-4 flex items-center justify-between gap-4`}
+    >
       <div>
         <Link to="/" className="flex items-center gap-1">
 			<img src="/assets/images/logo.png" className="h-7 w-7 object-cover rounded" alt="nexa-logo" />
@@ -15,7 +35,18 @@ export default function Navbar() {
 		  </h1>
 		</Link>
       </div>
-      <div className="flex gap-4">
+      <div className="flex items-center gap-6">
+		<nav className="flex items-center gap-4">
+		  <NavLink  to="/" className={navLinkClass}>
+			Home
+		  </NavLink >
+		  <NavLink  to="/app1" className={navLinkClass}>
+			DataList
+		  </NavLink >
+		  <NavLink  to="/app2" className={navLinkClass}>
+			TodoList
+		  </NavLink >
+		</nav>
         <button onClick={toggle} className="text-yellow-500 cursor-pointer">
           {darkMode ? (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
